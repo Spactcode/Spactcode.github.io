@@ -64,3 +64,6 @@ html[data-theme="dark"] .bg-dimmed:before{background:rgba(0,0,0,.65)}
 #article-view pre code.hljs .hljs-variable,#article-view pre code.hljs .hljs-template-variable{color:#f8a5c2}
 #article-view pre code.hljs .hljs-subst{color:#d8f4ff}
 #article-view pre code.hljs .hljs-meta{color:#ffb86c}
+
+/* Match the original editor typography for Markdown content. */
+#article-view h2{font-size:1.62em;line-height:1.46}#article-view h3{font-size:1.44em;line-height:1.48}#article-view h4{font-size:1.25em;line-height:1.55}#article-view p{line-height:1.75}
