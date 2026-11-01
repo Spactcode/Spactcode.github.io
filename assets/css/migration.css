@@ -47,3 +47,20 @@ html[data-theme="dark"] .bg-dimmed:before{background:rgba(0,0,0,.65)}
   .wrap-right .area-aside.area-aside-on{left:0;right:auto;transform:translateX(0);visibility:visible}
   body.bg-dimmed{overflow:hidden}body.bg-dimmed:before{position:fixed;inset:0;width:auto;height:auto;margin:0;pointer-events:auto}
 }
+
+/* Keep the entire cover visible in list cards and related posts. */
+.article-type-common .thumbnail,.article-related .thumnail{background-size:contain!important;background-repeat:no-repeat;background-position:center;background-color:var(--bg-panel)}
+/* A shared terminal frame for Markdown and imported code, in either theme. */
+#article-view pre{padding:48px 20px 20px!important;background:#0b1220!important;overflow:hidden}
+#article-view pre::before{display:block;background:#101b2d}
+#article-view pre code{display:block;overflow-x:auto;max-width:100%;font-size:14px;line-height:1.75;background:transparent!important;color:#d8f4ff!important;padding:0!important;white-space:pre}
+#article-view pre code.hljs .hljs-keyword,#article-view pre code.hljs .hljs-selector-tag{color:#ff357c}
+#article-view pre code.hljs .hljs-string,#article-view pre code.hljs .hljs-regexp,#article-view pre code.hljs .hljs-addition{color:#a6e22e}
+#article-view pre code.hljs .hljs-number,#article-view pre code.hljs .hljs-literal{color:#bd93f9}
+#article-view pre code.hljs .hljs-title,#article-view pre code.hljs .hljs-function .hljs-title{color:#66d9ef}
+#article-view pre code.hljs .hljs-built_in,#article-view pre code.hljs .hljs-type{color:#ffd166}
+#article-view pre code.hljs .hljs-comment,#article-view pre code.hljs .hljs-quote{color:#94a3b8;font-style:italic}
+#article-view pre code.hljs .hljs-attr,#article-view pre code.hljs .hljs-attribute{color:#8be9fd}
+#article-view pre code.hljs .hljs-variable,#article-view pre code.hljs .hljs-template-variable{color:#f8a5c2}
+#article-view pre code.hljs .hljs-subst{color:#d8f4ff}
+#article-view pre code.hljs .hljs-meta{color:#ffb86c}

@@ -19,6 +19,19 @@
   $('#article-scroll-btn')?.addEventListener('click',()=>$('#article-view').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
   const body=$('#article-view');
   body?.querySelectorAll('table').forEach(t=>{const wrap=el('div','table-overflow');t.before(wrap);wrap.append(t);});
+  body?.querySelectorAll('pre code').forEach(code=>{
+    if(!window.hljs)return;
+    const pre=code.parentElement;
+    const classes=[code.className,pre.className,pre.parentElement?.className||''].join(' ');
+    const declared=pre.dataset.keLanguage||classes.match(/(?:language-|lang-)([\w+-]+)/)?.[1];
+    const aliases={html:'xml',js:'javascript',ts:'typescript',sh:'bash',c:'c',text:'plaintext'};
+    const language=aliases[declared]||declared;
+    if(language&&hljs.getLanguage(language))code.className='language-'+language;
+    else if(declared)code.className='language-plaintext';
+    // Re-highlight from text so pasted markup can never become executable HTML.
+    code.textContent=code.textContent;
+    hljs.highlightElement(code);
+  });
   body?.querySelectorAll('pre').forEach(pre=>{const button=el('button','copy-code','복사');button.type='button';pre.before(button);button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pre.textContent);button.textContent='복사됨';setTimeout(()=>button.textContent='복사',1500);}catch(e){button.textContent='복사하려면 코드를 선택해주세요';}});});
   body?.querySelectorAll('img').forEach(img=>{img.addEventListener('click',e=>{e.preventDefault();const d=$('#image-dialog');d.querySelector('img').src=img.currentSrc||img.src;d.querySelector('img').alt=img.alt;d.showModal();});});
   const banner=body?.querySelector('img[alt="배너"]');if(banner){$('.article-header').style.backgroundImage='url("'+banner.src+'")';(banner.closest('figure')||banner).hidden=true;}

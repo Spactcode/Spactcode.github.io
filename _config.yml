@@ -6,7 +6,11 @@ lang: ko
 timezone: Asia/Seoul
 permalink: /:categories/:title/
 markdown: kramdown
-highlighter: rouge
+highlighter: none
+kramdown:
+  syntax_highlighter: null
+  smart_quotes: [apos, apos, quot, quot]
+  typographic_symbols: {mdash: '---', ndash: '--', hellip: '...', laquo: '<<', raquo: '>>'}
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
