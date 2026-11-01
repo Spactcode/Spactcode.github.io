@@ -42,7 +42,15 @@ for item in items:
     p = Article(); p.feed(file.read_text(encoding='utf-8'))
     actual = {'text': digest(re.sub(r'[\s\u200b\ufeff]', '', ''.join(p.text))), 'images': p.images, 'links': p.links, 'code': [digest(c) for c in p.code]}
     for key in actual:
-        if actual[key] != item[key]: failed.append((item['file'], key))
+        if actual[key] != item[key]:
+            failed.append((item['file'], key))
+            detail = key
+            if key == 'text':
+                before, after = item['expected_text'], re.sub(r'[\s\u200b\ufeff]', '', ''.join(p.text))
+                pos = next((i for i, (a,b) in enumerate(zip(before,after)) if a != b), min(len(before),len(after)))
+                detail += f' at {pos}: expected={before[max(0,pos-30):pos+80]!r}; actual={after[max(0,pos-30):pos+80]!r}'
+            detail = detail.replace('%','%25').replace('\n','%0A').replace('\r','%0D')
+            print(f"::error file=_posts/{item['file']}::{detail}")
 if failed:
     for file, key in failed: print(f'Migration mismatch: {file}: {key}')
     sys.exit(1)
