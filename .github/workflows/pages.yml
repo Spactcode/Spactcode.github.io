@@ -23,6 +23,9 @@ jobs:
       - name: Verify migrated post content
         if: contains(github.event.head_commit.message, '[verify-migration]')
         run: python3 tools/verify-migration.py _site
+      - name: Generate link previews
+        timeout-minutes: 5
+        run: python3 tools/build-link-previews.py _site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site

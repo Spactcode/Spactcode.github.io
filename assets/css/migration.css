@@ -67,3 +67,13 @@ html[data-theme="dark"] .bg-dimmed:before{background:rgba(0,0,0,.65)}
 
 /* Match the original editor typography for Markdown content. */
 #article-view h2{font-size:1.62em;line-height:1.46}#article-view h3{font-size:1.44em;line-height:1.48}#article-view h4{font-size:1.25em;line-height:1.55}#article-view p{line-height:1.75}
+
+/* Compact, responsive previews shared by migrated and newly written links. */
+#article-view a.link-preview{display:flex!important;align-items:center;gap:20px;width:100%;box-sizing:border-box;margin:22px 0;padding:20px;border:1px solid var(--border-dim);border-radius:12px;background:var(--bg-panel);color:var(--text-main);text-decoration:none!important;overflow:hidden;box-shadow:none;transition:border-color .2s}
+#article-view a.link-preview:hover,#article-view a.link-preview:focus-visible{border-color:var(--neon-blue)}
+#article-view .link-preview img{display:block;width:150px;height:100px;flex:0 0 150px;object-fit:contain;border-radius:6px;margin:0;cursor:pointer;background:transparent}
+#article-view .link-preview-text{display:flex;flex:1;min-width:0;flex-direction:column;gap:7px}
+#article-view .link-preview strong{font-size:17px;line-height:1.5;color:var(--neon-blue);overflow-wrap:anywhere}
+#article-view .link-preview-description{font-size:14px;line-height:1.6;color:var(--text-dim);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#article-view .link-preview-host{font:12px/1.5 var(--font-mono);color:var(--text-dim);overflow-wrap:anywhere}
+@media(max-width:600px){#article-view a.link-preview{gap:12px;padding:14px}#article-view .link-preview img{width:80px;height:80px;flex-basis:80px}#article-view .link-preview strong{font-size:15px}#article-view .link-preview-description{font-size:13px}}
